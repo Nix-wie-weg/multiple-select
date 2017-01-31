@@ -557,16 +557,15 @@
                         return;
                     }
 
-                    html.push('[');
-                    html.push(text);
                     if ($children.length > $selected.length) {
                         var list = [];
                         $selected.each(function () {
                             list.push($(this).parent().text());
                         });
-                        html.push(': ' + list.join(', '));
+                        html.push(list.join(', '));
+                    } else {
+                      html.push(text);
                     }
-                    html.push(']');
                     texts.push(html.join(''));
                 });
             }
