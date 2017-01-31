@@ -2,7 +2,7 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  * @version 1.2.1
  *
- * http://wenzhixin.net.cn/p/multiple-select/
+ * https://github.com/Nix-wie-weg/multiple-select/tree/option-group-changes
  */
 
 (function ($) {
