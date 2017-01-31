@@ -475,11 +475,12 @@
         update: function (isInit) {
             var selects = this.options.displayValues ? this.getSelects() : this.getSelects('text'),
                 $span = this.$choice.find('>span'),
-                sl = selects.length;
+                sl = selects.length,
+                total = this.getSelects().length;
 
             if (sl === 0) {
                 $span.addClass('placeholder').html(this.options.placeholder);
-            } else if (this.options.allSelected && sl === this.$selectItems.length + this.$disableItems.length) {
+            } else if (this.options.allSelected && total === this.$selectItems.length + this.$disableItems.length) {
                 $span.removeClass('placeholder').html(this.options.allSelected);
             } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
                 $span.removeClass('placeholder').text(selects.slice(0, this.options.minimumCountSelected)
