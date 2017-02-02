@@ -440,7 +440,9 @@
                 this.$searchInput.focus();
                 this.filter();
             }
+
             this.options.onOpen();
+            this.updateOptGroupSelect()
         },
 
         close: function () {
