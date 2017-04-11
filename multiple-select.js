@@ -2,7 +2,7 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  * @version 1.2.1
  *
- * http://wenzhixin.net.cn/p/multiple-select/
+ * https://github.com/Nix-wie-weg/multiple-select/tree/option-group-changes
  */
 
 (function ($) {
@@ -440,7 +440,9 @@
                 this.$searchInput.focus();
                 this.filter();
             }
+
             this.options.onOpen();
+            this.updateOptGroupSelect()
         },
 
         close: function () {
@@ -475,11 +477,12 @@
         update: function (isInit) {
             var selects = this.options.displayValues ? this.getSelects() : this.getSelects('text'),
                 $span = this.$choice.find('>span'),
-                sl = selects.length;
+                sl = selects.length,
+                total = this.getSelects().length;
 
             if (sl === 0) {
                 $span.addClass('placeholder').html(this.options.placeholder);
-            } else if (this.options.allSelected && sl === this.$selectItems.length + this.$disableItems.length) {
+            } else if (this.options.allSelected && total === this.$selectItems.length + this.$disableItems.length) {
                 $span.removeClass('placeholder').html(this.options.allSelected);
             } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
                 $span.removeClass('placeholder').text(selects.slice(0, this.options.minimumCountSelected)
@@ -557,16 +560,15 @@
                         return;
                     }
 
-                    html.push('[');
-                    html.push(text);
                     if ($children.length > $selected.length) {
                         var list = [];
                         $selected.each(function () {
                             list.push($(this).parent().text());
                         });
-                        html.push(': ' + list.join(', '));
+                        html.push(list.join(', '));
+                    } else {
+                      html.push(text);
                     }
-                    html.push(']');
                     texts.push(html.join(''));
                 });
             }
